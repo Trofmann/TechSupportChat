@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def message_list(request):
+    return render(request, 'chat/message_list.html', {})
