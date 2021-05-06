@@ -5,14 +5,10 @@
         <title>TechSupportChat</title>
     </head>
     <body>
-        <p>{{messages}}</p>
-        <ul>
-            <li>
-                Первый
-            </li>
-            <li>
-                Второй
-            </li>
-        </ul>
+        {% for message in messages %}
+            <div>
+                <p>{{message.text}}</p>
+            </div>
+        {% endfor %}
     </body>
 </html>
