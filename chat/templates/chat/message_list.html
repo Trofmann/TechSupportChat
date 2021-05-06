@@ -7,8 +7,11 @@
     <body>
         {% for message in messages %}
             <div>
-                <p>{{message.text}}</p>
-                <p>{{message.sent_date}}</p>
+                <p>
+                    {{ message.author }}
+                    {{ message.text }}
+                    {{ message.sent_date }}
+                </p>
             </div>
         {% endfor %}
         <form method="post">

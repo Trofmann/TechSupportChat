@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils import timezone
 
 from .forms import MessageForm
 from .models import Message
@@ -9,8 +10,9 @@ def message_list(request):
     if request.method == "POST":
         new_message_text = request.POST.get("text")
         print(new_message_text)
-        new_message = Message(text=new_message_text, author=User.objects.get(username='user'))
-        new_message.send()
+        new_message = Message(text=new_message_text, author=User.objects.get(username='user'), sent_date=timezone.now())
+        new_message.save()
+        #new_message.send()
 
     messages = Message.objects.all()
     message_form = MessageForm()
