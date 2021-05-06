@@ -10,5 +10,10 @@
                 <p>{{message.text}}</p>
             </div>
         {% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Send">
+        </form>
     </body>
 </html>
