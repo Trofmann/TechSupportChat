@@ -1,9 +1,9 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.utils import timezone
 
 from .forms import MessageForm
 from .models import Message
-from django.contrib.auth.models import User
 
 
 def message_list(request):
@@ -12,7 +12,6 @@ def message_list(request):
         print(new_message_text)
         new_message = Message(text=new_message_text, author=User.objects.get(username='user'), sent_date=timezone.now())
         new_message.save()
-        #new_message.send()
 
     messages = Message.objects.all()
     message_form = MessageForm()
