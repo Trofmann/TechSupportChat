@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
@@ -12,9 +13,9 @@ class ChatUser(models.Model):
 
 class Message(models.Model):
     """ Message class"""
-    author = models.ManyToManyField(ChatUser, related_name="author")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.CharField(max_length=300)
-    recipient = models.ManyToManyField(ChatUser, related_name="recipient")
+    #recipient = models.ManyToManyField(ChatUser, related_name="recipient")
     sent_date = models.DateTimeField(blank=True, null=True)
 
     def send(self):
