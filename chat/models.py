@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -5,18 +6,22 @@ from django.utils import timezone
 
 
 class ChatUser(models.Model):
-    """Chat user class"""
+    """Класс пользователя чата"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # type - manager or client
+    # Тип - manager или client
     type = models.CharField(max_length=7)
 
 
 class Message(models.Model):
-    """ Message class"""
+    """ Класс сообщения """
+    # Автор сообщения
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # Текст соощения
     text = models.CharField(max_length=300)
-    #recipient = models.ManyToManyField(ChatUser, related_name="recipient")
-    sent_date = models.DateTimeField(blank=True, null=True)
+    # Получатель сообщения
+    # recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='recipient')
+    # Дата отправки
+    sent_date = models.DateTimeField()
 
     def send(self):
         self.sent_date = timezone.now()
