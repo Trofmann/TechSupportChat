@@ -2,7 +2,6 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from django.utils import timezone
 
 
 class ChatUser(models.Model):
@@ -15,17 +14,18 @@ class ChatUser(models.Model):
 class Message(models.Model):
     """ Класс сообщения """
     # Автор сообщения
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор сообщения')
     # Текст соощения
-    text = models.CharField(max_length=300)
+    text = models.CharField(max_length=300, verbose_name='Текст сообщения')
     # Получатель сообщения
     # recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='recipient')
     # Дата отправки
-    sent_date = models.DateTimeField(auto_now_add=True)
+    sent_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата отправки')
 
-    def send(self):
-        self.sent_date = timezone.now()
-        self.save()
+    class Meta:
+        verbose_name_plural = 'Сообщения'
+        verbose_name = 'Сообщение'
+        ordering = ['sent_date']
 
     def __str__(self):
-        return self.text
+        return self.text.encode('utf8')
