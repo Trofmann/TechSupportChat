@@ -21,7 +21,7 @@ class Message(models.Model):
     # Получатель сообщения
     # recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='recipient')
     # Дата отправки
-    sent_date = models.DateTimeField()
+    sent_date = models.DateTimeField(auto_now_add=True)
 
     def send(self):
         self.sent_date = timezone.now()

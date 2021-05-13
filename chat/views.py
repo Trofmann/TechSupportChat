@@ -12,7 +12,7 @@ def message_list(request):
         new_message_text = request.POST.get('text')
         new_message_author = User.objects.all()[int(request.POST.get('author'))]
         # Создаем объект сообщения
-        new_message = Message(text=new_message_text, author=new_message_author, sent_date=timezone.now())
+        new_message = Message(text=new_message_text, author=new_message_author)
         new_message.save()
 
     messages = Message.objects.all()
