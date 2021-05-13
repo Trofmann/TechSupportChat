@@ -10,7 +10,7 @@
                 <p>
                     {{ message.author }}
                     {{ message.text }}
-                    {{ message.sent_date }}
+                    {{ message.sent_date|date:"d.m.Y H:i"}}
                     {{ message.recipient }}
                 </p>
             </div>
