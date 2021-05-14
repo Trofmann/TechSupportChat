@@ -27,5 +27,5 @@ class Message(models.Model):
         verbose_name = 'Сообщение'
         ordering = ['sent_date']
 
-    def __str__(self):
-        return self.text.encode('utf8')
+    def __unicode__(self):
+        return self.text

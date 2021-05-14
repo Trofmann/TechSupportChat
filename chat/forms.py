@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 
 class MessageForm(forms.Form):
     # Автор сообщения
-    author = forms.ChoiceField(choices=tuple(enumerate(User.objects.all())))
+    author = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
     # Текст сообщения
     text = forms.CharField(max_length=300)
     # Получатель сообщения
-    recipient = forms.ChoiceField(choices=tuple(enumerate(User.objects.all())))
+    recipient = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
