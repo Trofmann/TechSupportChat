@@ -9,5 +9,5 @@ from django.conf.urls import url
 from .views import MessageCreateView
 
 urlpatterns = [
-    url(r'', MessageCreateView.as_view(),)
+    url(r'', MessageCreateView.as_view(), name='message_list')
 ]

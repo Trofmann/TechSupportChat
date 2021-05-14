@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic.edit import CreateView
 
 from .forms import MessageForm
 from .models import Message
