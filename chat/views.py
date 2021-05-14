@@ -1,16 +1,20 @@
 # coding=utf-8
-from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.utils import timezone
+from django.views.generic import CreateView
 
 from .forms import MessageForm
 from .models import Message
 
 
-def message_list(request):
-    # В случае POST-запроса обрабатываем данные
-    if request.method == 'POST':
-        # Создаем экземпляр формы и заполняем его данными из запроса
+# Класс для создания сообщения
+class MessageCreateView(CreateView):
+    # Обработка GET-запроса
+    def get(self, request, *args, **kwargs):
+        context = {'form': MessageForm(), 'messages': Message.objects.all()}
+        return render(request, 'chat/message_list.html', context)
+
+    # Обработка POST-запроса
+    def post(self, request, *args, **kwargs):
         message_form = MessageForm(request.POST)
         if message_form.is_valid():
             # Достаем из формы текст и автора сообщения
@@ -19,9 +23,5 @@ def message_list(request):
             # Создаем объект сообщения и сохраняем его
             new_message = Message(text=new_message_text, author=new_message_author)
             new_message.save()
-
-    else:
-        message_form = MessageForm()
-
-    messages = Message.objects.all()
-    return render(request, 'chat/message_list.html', {'messages': messages, 'form': message_form})
+        context = {'form': MessageForm(), 'messages': Message.objects.all()}
+        return render(request, 'chat/message_list.html', context)

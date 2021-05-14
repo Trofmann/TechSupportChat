@@ -1,0 +1,2 @@
+https://www.agiliq.com/blog/2019/01/django-createview/
+https://evileg.com/ru/post/313/
