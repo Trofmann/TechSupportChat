@@ -18,7 +18,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url('^admin/', admin.site.urls),
-    url('^accounts', include('django.contrib.auth.urls')),
-    url('', include('chat.urls'))
+    url(r'^admin/', admin.site.urls),
+    url(r'^accounts', include('django.contrib.auth.urls')),
+    url(r'', include('chat.urls'))
 ]
