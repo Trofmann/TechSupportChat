@@ -14,6 +14,7 @@ def message_list(request):
         # Создаем объект сообщения
         new_message = Message(text=new_message_text, author=new_message_author)
         new_message.save()
+        print(1)
 
     messages = Message.objects.all()
     message_form = MessageForm()
