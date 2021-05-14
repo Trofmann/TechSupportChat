@@ -1,12 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
-# from .views import message_list
-#
-# urlpatterns = [
-#     url(r'', message_list, name='message_list'),
-# ]
-
 from .views import MessageCreateView
 
 urlpatterns = [
