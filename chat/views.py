@@ -1,7 +1,6 @@
 # coding=utf-8
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.contrib.auth.decorators import login_required
 
 from .forms import MessageForm
 from .models import Message
