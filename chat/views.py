@@ -26,8 +26,11 @@ class MessageCreateView(CreateView):
             # # Создаем объект сообщения и сохраняем его
             # new_message = Message(text=new_message_text, author=new_message_author)
             message_form.object = message_form.save()
+            message_form.object.author = request.user
+            message_form.object.save()
+            print(message_form.object.author)
             # new_message.save()
-        context = {'form': MessageForm(), 'messages': Message.objects.all()}
+        context = {'form': MessageForm(), 'messages': Message.objects.filter(author=request.user)}
         return render(request, 'chat/message_list.html', context)
 
 # class MessageCreateView(CreateView):
