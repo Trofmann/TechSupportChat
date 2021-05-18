@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
+from django.contrib.auth.decorators import login_required
 
 from .forms import MessageForm
 from .models import Message
@@ -25,9 +26,13 @@ class MessageCreateView(CreateView):
             # new_message_author = message_form.cleaned_data['author']
             # # Создаем объект сообщения и сохраняем его
             # new_message = Message(text=new_message_text, author=new_message_author)
+            message_form.author = request.user
+            print(message_form.author)
             message_form.object = message_form.save()
+            print(message_form.object)
             # new_message.save()
-        context = {'form': MessageForm(), 'messages': Message.objects.all()}
+        context = {'form': MessageForm(), 'messages': Message.objects.filter(author=request.user)}
+        # context = {'form': MessageForm(), 'messages': Message.objects.all()}
         return render(request, 'chat/message_list.html', context)
 
 # class MessageCreateView(CreateView):
