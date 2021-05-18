@@ -62,6 +62,8 @@ class Dialog(models.Model):
         verbose_name='Сообщение'
     )
 
+    #Добавить метод передачи другому оператору
+
 
 # class Chat(models.Model):
 #     """Класс чата"""
